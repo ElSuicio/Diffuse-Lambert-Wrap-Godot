@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dcf15tiqoy85r"]
+
+[ext_resource type="Shader" uid="uid://bc5lxj0d3n3kr" path="res://assets/materials/shaders/diffuse_lambert_wrap.tres" id="1_l0j8d"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_l0j8d")
+shader_parameter/ColorParameter = Color(1, 1, 1, 1)
+shader_parameter/DiffuseRoughness = 1.0

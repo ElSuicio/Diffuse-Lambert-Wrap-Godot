@@ -7,7 +7,7 @@ This is an addon for Godot 4.4+ that adds the `Lambert-Wrap` node to the visual 
 
 </div>
 
-<div align="center"> Lambert Diffuse Reflectance Model (Node). </div>
+<div align="center"> Lambert-Wrap Diffuse Reflectance Model (Node). </div>
 
 <br>
 
@@ -17,7 +17,7 @@ This is an addon for Godot 4.4+ that adds the `Lambert-Wrap` node to the visual 
 
 </div>
 
-<div align="center"> Lambert Diffuse Reflectance Model (Render). </div>
+<div align="center"> Lambert-Wrap Diffuse Reflectance Model (Render). </div>
 
 # Links & Support
 - [itch.io](https://interdreamsoft.itch.io/)

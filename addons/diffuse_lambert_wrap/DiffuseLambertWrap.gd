@@ -28,7 +28,7 @@ func _is_available(mode : Shader.Mode, type : VisualShader.Type) -> bool:
 
 #region Input
 func _get_input_port_count() -> int:
-	return 6
+	return 5
 
 func _get_input_port_name(port : int) -> String:
 	match port:
@@ -37,12 +37,10 @@ func _get_input_port_name(port : int) -> String:
 		1:
 			return "Light"
 		2:
-			return "Diffuse Color"
-		3:
 			return "Light Color"
-		4:
+		3:
 			return "Attenuation"
-		5:
+		4:
 			return "Roughness"
 	
 	return ""
@@ -54,12 +52,10 @@ func _get_input_port_type(port : int) -> PortType:
 		1:
 			return PORT_TYPE_VECTOR_3D # Light.
 		2:
-			return PORT_TYPE_VECTOR_3D # Albedo.
-		3:
 			return PORT_TYPE_VECTOR_3D # Light Color.
-		4:
+		3:
 			return PORT_TYPE_SCALAR # Attenuation.
-		5:
+		4:
 			return PORT_TYPE_SCALAR # Roughness.
 	
 	return PORT_TYPE_SCALAR
@@ -75,13 +71,13 @@ func _get_output_port_name(_port : int) -> String:
 
 func _get_output_port_type(_port : int) -> PortType:
 	return PORT_TYPE_VECTOR_3D
+
 #endregion
 
 func _get_code(input_vars : Array[String], output_vars : Array[String], _mode : Shader.Mode, _type : VisualShader.Type) -> String:
 	var default_vars : Array[String] = [
 		"NORMAL",
 		"LIGHT",
-		"ALBEDO",
 		"LIGHT_COLOR",
 		"ATTENUATION",
 		"ROUGHNESS"
@@ -103,15 +99,14 @@ func _get_code(input_vars : Array[String], output_vars : Array[String], _mode : 
 	
 	float diffuse_lambert_wrap = max(0.0, (NdotL + {roughness}) / ( (1.0 + {roughness}) * (1.0 + {roughness}) ) );
 	
-	{output} = {albedo} * {light_color} * {attenuation} * diffuse_lambert_wrap * INV_PI;
+	{output} = {light_color} * {attenuation} * diffuse_lambert_wrap * INV_PI;
 	"""
 	
 	return shader.format({
 		"normal" : input_vars[0],
 		"light" : input_vars[1],
-		"albedo" : input_vars[2],
-		"light_color" : input_vars[3],
-		"attenuation" : input_vars[4],
-		"roughness" : input_vars[5],
+		"light_color" : input_vars[2],
+		"attenuation" : input_vars[3],
+		"roughness" : input_vars[4],
 		"output" : output_vars[0]
 		})

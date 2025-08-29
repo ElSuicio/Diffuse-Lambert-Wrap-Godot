@@ -3,7 +3,7 @@ This is an addon for Godot 4.4+ that adds the `Lambert-Wrap` node to the visual 
 
 <div align="center">
   
-![LambertNode](https://github.com/ElSuicio/Diffuse-Lambert-Wrap-Godot/blob/c66283832513e32a1e44ee892734848ae84ce782/LambertWrapNode.png)
+![LambertNode](https://raw.githubusercontent.com/ElSuicio/Diffuse-Lambert-Wrap-Godot/refs/heads/main/LambertWrapNode.png)
 
 </div>
 
@@ -13,7 +13,7 @@ This is an addon for Godot 4.4+ that adds the `Lambert-Wrap` node to the visual 
 
 <div align="center">
 
-![LambertRender](https://github.com/ElSuicio/Diffuse-Lambert-Wrap-Godot/blob/c66283832513e32a1e44ee892734848ae84ce782/render/1920x1080/LambertWrap.png)
+![LambertRender](https://raw.githubusercontent.com/ElSuicio/Diffuse-Lambert-Wrap-Godot/refs/heads/main/render/1152x648/LambertWrap.png)
 
 </div>
 

@@ -1,9 +1,9 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dcf15tiqoy85r"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://kasa27rc2neb"]
 
-[ext_resource type="Shader" uid="uid://bc5lxj0d3n3kr" path="res://assets/materials/shaders/diffuse_lambert_wrap.tres" id="1_l0j8d"]
+[ext_resource type="Shader" uid="uid://td1c7r4v2hfs" path="res://assets/materials/shaders/DiffuseLambertWrap.tres" id="1_l0j8d"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_l0j8d")
-shader_parameter/ColorParameter = Color(1, 1, 1, 1)
+shader_parameter/AlbedoColor = Color(1, 1, 1, 1)
 shader_parameter/Roughness = 1.0

@@ -1,0 +1,154 @@
+[gd_resource type="VisualShader" load_steps=13 format=3 uid="uid://td1c7r4v2hfs"]
+
+[ext_resource type="Script" uid="uid://xibfsxdm510y" path="res://addons/diffuse_lambert_wrap/DiffuseLambertWrap.gd" id="1_3oo24"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_3oo24"]
+expanded_output_ports = [0]
+parameter_name = "AlbedoColor"
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_eehab"]
+parameter_name = "Roughness"
+hint = 1
+default_value_enabled = true
+default_value = 1.0
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_oyh3m"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_eehab"]
+input_name = "diffuse"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_oyh3m"]
+
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_d7h4a"]
+initialized = true
+script = ExtResource("1_3oo24")
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_uat6k"]
+input_name = "normal"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_gkype"]
+input_name = "light"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_qrnow"]
+input_name = "light_color"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_u6y5u"]
+input_name = "attenuation"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_xgr65"]
+input_name = "roughness"
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform vec4 AlbedoColor : source_color = vec4(1.000000, 1.000000, 1.000000, 1.000000);
+uniform float Roughness : hint_range(0.0, 1.0) = 1.0;
+
+
+
+void fragment() {
+// ColorParameter:2
+	vec4 n_out2p0 = AlbedoColor;
+	float n_out2p1 = n_out2p0.r;
+	float n_out2p2 = n_out2p0.g;
+	float n_out2p3 = n_out2p0.b;
+
+
+// VectorCompose:4
+	vec3 n_out4p0 = vec3(n_out2p1, n_out2p2, n_out2p3);
+
+
+// FloatParameter:3
+	float n_out3p0 = Roughness;
+
+
+// Output:0
+	ALBEDO = n_out4p0;
+	ROUGHNESS = n_out3p0;
+
+
+}
+
+void light() {
+// Input:2
+	vec3 n_out2p0 = DIFFUSE_LIGHT;
+
+
+// Input:5
+	vec3 n_out5p0 = NORMAL;
+
+
+// Input:6
+	vec3 n_out6p0 = LIGHT;
+
+
+// Input:7
+	vec3 n_out7p0 = LIGHT_COLOR;
+
+
+// Input:8
+	float n_out8p0 = ATTENUATION;
+
+
+// Input:9
+	float n_out9p0 = ROUGHNESS;
+
+
+	vec3 n_out4p0;
+// LambertWrap:4
+	{
+		
+			const float INV_PI = 0.318309;
+			
+			vec3 n = normalize( n_out5p0 );
+			vec3 l = normalize( n_out6p0 );
+			
+			float NdotL = dot(n, l); // [-1.0, 1.0].
+			
+			// https://web.archive.org/web/20210228210901/http://blog.stevemcauley.com/2011/12/03/energy-conserving-wrapped-diffuse/
+			
+			float diffuse_lambert_wrap = max(0.0, (NdotL + n_out9p0) / ( (1.0 + n_out9p0) * (1.0 + n_out9p0) ) );
+			
+			n_out4p0 = n_out7p0 * n_out8p0 * diffuse_lambert_wrap * INV_PI;
+			
+	}
+
+
+// VectorOp:3
+	vec3 n_out3p0 = n_out2p0 + n_out4p0;
+
+
+// Output:0
+	DIFFUSE_LIGHT = n_out3p0;
+
+
+}
+"
+graph_offset = Vector2(-646.667, -146.667)
+nodes/fragment/0/position = Vector2(400, 80)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_3oo24")
+nodes/fragment/2/position = Vector2(-40, 80)
+nodes/fragment/3/node = SubResource("VisualShaderNodeFloatParameter_eehab")
+nodes/fragment/3/position = Vector2(-40, 360)
+nodes/fragment/4/node = SubResource("VisualShaderNodeVectorCompose_oyh3m")
+nodes/fragment/4/position = Vector2(220, 80)
+nodes/fragment/connections = PackedInt32Array(2, 1, 4, 0, 2, 2, 4, 1, 2, 3, 4, 2, 4, 0, 0, 0, 3, 0, 0, 3)
+nodes/light/2/node = SubResource("VisualShaderNodeInput_eehab")
+nodes/light/2/position = Vector2(0, 140)
+nodes/light/3/node = SubResource("VisualShaderNodeVectorOp_oyh3m")
+nodes/light/3/position = Vector2(240, 100)
+nodes/light/4/node = SubResource("VisualShaderNodeCustom_d7h4a")
+nodes/light/4/position = Vector2(0, 220)
+nodes/light/5/node = SubResource("VisualShaderNodeInput_uat6k")
+nodes/light/5/position = Vector2(-280, 120)
+nodes/light/6/node = SubResource("VisualShaderNodeInput_gkype")
+nodes/light/6/position = Vector2(-280, 200)
+nodes/light/7/node = SubResource("VisualShaderNodeInput_qrnow")
+nodes/light/7/position = Vector2(-280, 280)
+nodes/light/8/node = SubResource("VisualShaderNodeInput_u6y5u")
+nodes/light/8/position = Vector2(-260, 360)
+nodes/light/9/node = SubResource("VisualShaderNodeInput_xgr65")
+nodes/light/9/position = Vector2(-260, 440)
+nodes/light/connections = PackedInt32Array(2, 0, 3, 0, 3, 0, 0, 0, 4, 0, 3, 1, 5, 0, 4, 0, 6, 0, 4, 1, 7, 0, 4, 2, 8, 0, 4, 3, 9, 0, 4, 4)

@@ -1,23 +1,29 @@
 # Diffuse Lambert-Wrap - Godot
 This is an addon for Godot 4.4+ that adds the `Lambert-Wrap` node to the visual shader system. This node outputs the `Diffuse Light` based on the `Energy-Conserving wrapped Lambertian reflectance model`.
 
+<br>
+
 <div align="center">
   
-![LambertNode](https://raw.githubusercontent.com/ElSuicio/Diffuse-Lambert-Wrap-Godot/refs/heads/main/LambertWrapNode.png)
+<img src = "https://raw.githubusercontent.com/ElSuicio/Diffuse-Lambert-Wrap-Godot/refs/heads/main/LambertWrapNode.png" alt = "LambertWrapNode.">
 
 </div>
 
-<div align="center"> Lambert-Wrap Diffuse Reflectance Model (Node). </div>
+<br>
+
+<div align="center"> Lambert Wrap Diffuse Reflectance Model (Node). </div>
 
 <br>
 
 <div align="center">
-
-![LambertRender](https://raw.githubusercontent.com/ElSuicio/Diffuse-Lambert-Wrap-Godot/refs/heads/main/render/1152x648/LambertWrap.png)
+  
+<img src = "https://raw.githubusercontent.com/ElSuicio/Diffuse-Lambert-Wrap-Godot/refs/heads/main/render/1152x648/LambertWrap.png" alt = "LambertWrapRender.">
 
 </div>
 
-<div align="center"> Lambert-Wrap Diffuse Reflectance Model (Render). </div>
+<br>
+
+<div align="center"> Lambert Wrap Diffuse Reflectance Model (Render). </div>
 
 # Links & Support
 - [itch.io](https://interdreamsoft.itch.io/)

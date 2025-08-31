@@ -1,6 +1,6 @@
 [gd_resource type="VisualShader" load_steps=13 format=3 uid="uid://td1c7r4v2hfs"]
 
-[ext_resource type="Script" uid="uid://be5wn7a8ycif7" path="res://diffuse_lambert_wrap/addons/diffuse_lambert_wrap/DiffuseLambertWrap.gd" id="1_htay2"]
+[ext_resource type="Script" uid="uid://di4d15ulr87wb" path="res://addons/diffuse_lambert_wrap/DiffuseLambertWrap.gd" id="1_e3w1k"]
 
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_3oo24"]
 expanded_output_ports = [0]
@@ -15,9 +15,9 @@ default_value = 1.0
 
 [sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_oyh3m"]
 
-[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_olpu2"]
+[sub_resource type="VisualShaderNodeCustom" id="VisualShaderNodeCustom_e3w1k"]
 initialized = true
-script = ExtResource("1_htay2")
+script = ExtResource("1_e3w1k")
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_eehab"]
 input_name = "diffuse"
@@ -126,7 +126,7 @@ void light() {
 
 }
 "
-graph_offset = Vector2(-305.914, -193.377)
+graph_offset = Vector2(-292, -145.333)
 nodes/fragment/0/position = Vector2(400, 80)
 nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_3oo24")
 nodes/fragment/2/position = Vector2(-40, 80)
@@ -149,6 +149,6 @@ nodes/light/8/node = SubResource("VisualShaderNodeInput_u6y5u")
 nodes/light/8/position = Vector2(-260, 360)
 nodes/light/9/node = SubResource("VisualShaderNodeInput_xgr65")
 nodes/light/9/position = Vector2(-260, 440)
-nodes/light/10/node = SubResource("VisualShaderNodeCustom_olpu2")
-nodes/light/10/position = Vector2(0, 220)
+nodes/light/10/node = SubResource("VisualShaderNodeCustom_e3w1k")
+nodes/light/10/position = Vector2(0, 240)
 nodes/light/connections = PackedInt32Array(2, 0, 3, 0, 3, 0, 0, 0, 10, 0, 3, 1, 5, 0, 10, 0, 6, 0, 10, 1, 7, 0, 10, 2, 8, 0, 10, 3, 9, 0, 10, 4)

@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://kasa27rc2neb"]
 
-[ext_resource type="Shader" uid="uid://td1c7r4v2hfs" path="res://diffuse_lambert_wrap/addons/diffuse_lambert_wrap/materials/shaders/DiffuseLambertWrap.tres" id="1_l0j8d"]
+[ext_resource type="Shader" uid="uid://td1c7r4v2hfs" path="res://addons/diffuse_lambert_wrap/materials/shaders/DiffuseLambertWrap.tres" id="1_l0j8d"]
 
 [resource]
 render_priority = 0

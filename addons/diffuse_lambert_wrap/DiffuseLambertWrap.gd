@@ -2,8 +2,8 @@
 extends VisualShaderNodeCustom
 class_name VisualShaderNodeDiffuseLambertWrap
 
-# CC0 1.0 Universal, ElSuicio, 2025.
-# GODOT v4.4.1.stable.
+# CC0 1.0 Universal, ElSuicio, 2026.
+# GODOT v4.6.2.stable.
 # x.com/ElSuicio
 # github.com/ElSuicio
 # Contact email [interdreamsoft@gmail.com]
@@ -88,18 +88,17 @@ func _get_code(input_vars : Array[String], output_vars : Array[String], _mode : 
 			input_vars[i] = default_vars[i]
 	
 	var shader : String = """
-	const float INV_PI = 0.318309;
+	const float INV_PI = 0.31830988618379067154;
 	
 	vec3 n = normalize( {normal} );
 	vec3 l = normalize( {light} );
 	
-	float NdotL = dot(n, l); // [-1.0, 1.0].
+	float NdotL = dot(n, l); // cos(theta_l) == cos(theta_i).
 	
 	// https://web.archive.org/web/20210228210901/http://blog.stevemcauley.com/2011/12/03/energy-conserving-wrapped-diffuse/
+	float diffuse_lambert_wrap = INV_PI * max((NdotL + {roughness}) / ( (1.0 + {roughness}) * (1.0 + {roughness}) ), 0.0);
 	
-	float diffuse_lambert_wrap = max(0.0, (NdotL + {roughness}) / ( (1.0 + {roughness}) * (1.0 + {roughness}) ) );
-	
-	{output} = {light_color} * {attenuation} * diffuse_lambert_wrap * INV_PI;
+	{output} = {light_color} * {attenuation} * diffuse_lambert_wrap;
 	"""
 	
 	return shader.format({
